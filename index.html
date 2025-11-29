@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity Rev | GTM Engineering & Revenue Systems</title>
+    <meta name="description" content="We build AI + human go-to-market systems for B2B SaaS and agencies. Your fractional GTM engineering team.">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-alt: #f8fafc;
+            --color-text-main: #0f172a;
+            --color-text-muted: #475569;
+            --color-accent: #2563eb; /* Technical Blue */
+            --color-accent-hover: #1d4ed8;
+            --color-border: #e2e8f0;
+            
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --container-width: 1100px;
+            --radius: 4px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--color-text-main);
+            background-color: var(--color-bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); }
+        h3 { font-size: 1.25rem; font-weight: 600; }
+        
+        p { margin-bottom: 1.5rem; color: var(--color-text-muted); }
+        
+        strong { color: var(--color-text-main); font-weight: 600; }
+
+        .subtitle {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            background: #eff6ff;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
+
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: white;
+            border: 1px solid var(--color-accent);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text-main);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-text-main);
+            background-color: var(--color-bg-alt);
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--color-text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+        
+        .logo span { color: var(--color-accent); }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--color-accent); }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; align-items: center; }
+        }
+
+        /* --- SECTIONS --- */
+        section { padding: var(--spacing-lg) 0; }
+
+        .bg-alt { background-color: var(--color-bg-alt); }
+
+        /* Hero */
+        .hero {
+            padding: var(--spacing-xl) 0;
+            max-width: 800px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Who We Are For */
+        .card {
+            background: white;
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+        }
+        
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Problems */
+        .problem-list {
+            list-style: none;
+            border-left: 2px solid var(--color-border);
+        }
+
+        .problem-item {
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .problem-item::before {
+            content: "×";
+            position: absolute;
+            left: -11px; /* Center on border line */
+            top: 0;
+            background: var(--color-bg);
+            color: #ef4444; /* Red for problem */
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* Services */
+        .service-card {
+            border-top: 4px solid var(--color-accent);
+        }
+        
+        .service-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .service-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        /* Process */
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--color-bg-alt);
+            border-radius: var(--radius);
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-border); /* Subtle number */
+            line-height: 1;
+        }
+
+        /* About / Founders */
+        .founders-grid {
+            margin-top: 2rem;
+        }
+
+        .bio-box {
+            background: var(--color-bg-alt);
+            padding: 2rem;
+            border-radius: var(--radius);
+        }
+
+        /* FAQ */
+        details {
+            border-bottom: 1px solid var(--color-border);
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+
+        summary {
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+
+        summary::after {
+            content: "+";
+            position: absolute;
+            right: 0;
+            font-weight: 400;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        details[open] summary::after { content: "−"; }
+
+        details p {
+            margin-top: 1rem;
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Contact */
+        .contact-form {
+            background: var(--color-bg-alt);
+            padding: 2rem;
+            border-radius: var(--radius);
+        }
+
+        .form-group { margin-bottom: 1rem; }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            font-family: inherit;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Clarity<span>Rev</span></a>
+                <div class="nav-links">
+                    <a href="#problem">The Problem</a>
+                    <a href="#services">Solution</a>
+                    <a href="#process">Process</a>
+                    <a href="#about">About</a>
+                    <a href="#contact" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Book Discovery</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container hero">
+            <span class="section-tag">GTM Engineering</span>
+            <h1>Stop buying lead lists.<br>Start building a revenue engine.</h1>
+            <p class="subtitle">
+                We design, build, and run AI + Human Go-To-Market systems. 
+                From data enrichment to multi-channel infrastructure, we are your fractional GTM engineering team.
+            </p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Book a discovery call</a>
+                <a href="#process" class="btn btn-secondary">See how we work</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-alt">
+        <div class="container">
+            <div class="grid grid-3">
+                <div class="card">
+                    <span class="card-icon">🚀</span>
+                    <h3>B2B SaaS (Seed–Series B)</h3>
+                    <p>Founders who need a scalable pipeline system but don't want to hire a bloat-heavy RevOps team yet.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">⚡</span>
+                    <h3>Growth Agencies</h3>
+                    <p>Consultancies and agencies with outbound ambitions that need automated, high-signal prospecting.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">💎</span>
+                    <h3>Boutique Service Providers</h3>
+                    <p>High-ticket contract sellers ($20k+ ACV) where precision and personalization matter more than volume.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <h2>The "Frankenstein" GTM Problem</h2>
+                    <p>Most companies don't have a revenue problem; they have a systems problem. They treat lead generation as a task to be outsourced, rather than engineering to be built.</p>
+                    <p>We evolved from <em>Clarity LeadGen</em> to <strong>Clarity Rev</strong> because buying leads isn't enough anymore.</p>
+                </div>
+                <div>
+                    <ul class="problem-list">
+                        <li class="problem-item">
+                            <strong>Disconnected Tool Stack</strong><br>
+                            A patchwork of Clay, Apollo, CRMs, and email tools that don't talk to each other.
+                        </li>
+                        <li class="problem-item">
+                            <strong>Low Signal, High Noise</strong><br>
+                            SDRs wasting time on generic outreach because the data enrichment is surface level.
+                        </li>
+                        <li class="problem-item">
+                            <strong>No Feedback Loop</strong><br>
+                            Running outbound without tracking the data that actually drives pipeline velocity.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <span class="section-tag">Our Services</span>
+            <h2 style="margin-bottom: 3rem;">Full-Stack Revenue Architecture</h2>
+            <div class="grid grid-3">
+                
+                <div class="card service-card">
+                    <h3>GTM System Design</h3>
+                    <p>We build the blueprint before laying the bricks. ICP definition and technical architecture.</p>
+                    <ul class="service-list">
+                        <li>ICP & Persona Matrix</li>
+                        <li>Tech Stack Audit & Selection</li>
+                        <li>Data Flow Architecture</li>
+                    </ul>
+                </div>
+
+                <div class="card service-card">
+                    <h3>Data & Enrichment Engine</h3>
+                    <p>Using tools like Clay and custom scrapers to find signal others miss.</p>
+                    <ul class="service-list">
+                        <li>Waterfall Enrichment</li>
+                        <li>Intent Signal Monitoring</li>
+                        <li>CRM Data Hygiene & Cleaning</li>
+                    </ul>
+                </div>
+
+                <div class="card service-card">
+                    <h3>Outbound Infrastructure</h3>
+                    <p>Multi-channel motions designed to land in the inbox, not the spam folder.</p>
+                    <ul class="service-list">
+                        <li>Email Infra Setup (DNS/Warmup)</li>
+                        <li>Smart Lead Routing</li>
+                        <li>Dynamic Sequencing</li>
+                    </ul>
+                </div>
+
+                <div class="card service-card">
+                    <h3>Revenue Operations</h3>
+                    <p>Connecting the pipes so your CRM reflects reality.</p>
+                    <ul class="service-list">
+                        <li>HubSpot/Salesforce Automation</li>
+                        <li>Workflow Triggers</li>
+                        <li>Reporting Dashboards</li>
+                    </ul>
+                </div>
+
+                <div class="card service-card">
+                    <h3>Experimentation Loop</h3>
+                    <p>Continuous A/B testing on messaging, channels, and offers.</p>
+                    <ul class="service-list">
+                        <li>Campaign Analysis</li>
+                        <li>Message Optimization</li>
+                        <li>Pipeline Velocity Tracking</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="bg-alt">
+        <div class="container">
+            <span class="section-tag">How we work</span>
+            <h2>From Audit to Autopilot</h2>
+            <div class="grid grid-2" style="margin-top: 3rem;">
+                <div class="process-step">
+                    <span class="step-number">01</span>
+                    <h3>Scan & Audit</h3>
+                    <p>We tear down your current setup. We look at your DNS health, data quality, CRM hygiene, and past campaign performance to identify the leaks.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">02</span>
+                    <h3>Design & Build</h3>
+                    <p>We engineer the stack. We set up the Clay tables, configure the email infrastructure, and build the automation workflows that power the engine.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">03</span>
+                    <h3>Launch & Validate</h3>
+                    <p>We go live with "Minimum Viable Campaigns" to validate assumptions. We test messaging resonance and data accuracy in the wild.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">04</span>
+                    <h3>Iterate & Handover</h3>
+                    <p>We optimize based on reply data. Then, we document everything and train your team to own the controls (or we stay on to fly the plane).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <span class="section-tag">The Team</span>
+                    <h2>Built by Operators,<br>Not Agencies.</h2>
+                    <p>Clarity Rev is founded by two GTM veterans with over 25 years of combined experience in enterprise sales and revenue operations.</p>
+                    <p>We don't rely on "hacks." We rely on systems that scale. We've translated complex value propositions into actionable outbound for everyone from seed startups to trade finance firms.</p>
+                </div>
+                <div class="bio-box">
+                    <h4>The Founders' Background</h4>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">
+                        <strong>Founder 1:</strong> 15+ years in Enterprise Sales & Leadership. Specializes in high-ticket negotiation, sales psychology, and translating complex technical products into compelling market narratives.
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid var(--color-border); margin: 1rem 0;">
+                    <p style="font-size: 0.9rem;">
+                        <strong>Founder 2:</strong> 10+ years in Revenue Operations & Technical Growth. Hands-on architect of GTM stacks involving Clay, HubSpot, and custom automation.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem;">
+                <h3>Recent Outcomes</h3>
+                <div class="grid grid-3" style="margin-top: 1.5rem;">
+                    <div>
+                        <strong style="font-size: 2rem; color: var(--color-accent);">3x</strong>
+                        <p>Increase in positive reply rates for a B2B SaaS client after implementing waterfall enrichment.</p>
+                    </div>
+                    <div>
+                        <strong style="font-size: 2rem; color: var(--color-accent);">40%</strong>
+                        <p>Reduction in CAC by cleaning CRM data and stopping outreach to unqualified accounts.</p>
+                    </div>
+                    <div>
+                        <strong style="font-size: 2rem; color: var(--color-accent);">120+</strong>
+                        <p>Hours of manual SDR work saved per month via Clay + GPT-4 automations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-alt">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Common Questions</h2>
+            
+            <details>
+                <summary>How are you different from a lead gen agency?</summary>
+                <p>Agencies usually sell you a list of leads or book meetings for you using their black-box methods. We are GTM Engineers. We build the system <em>inside</em> your organization (or on your behalf) so you own the data, the infrastructure, and the IP.</p>
+            </details>
+            
+            <details>
+                <summary>Do you work with our existing SDRs?</summary>
+                <p>Yes. We often act as the "Technical Lead" for SDR teams. We provide them with better data and automated signals so they can focus on selling rather than prospecting.</p>
+            </details>
+
+            <details>
+                <summary>What tools do you use?</summary>
+                <p>We are tool-agnostic but have deep expertise in the modern GTM stack: Clay, Apollo, Instantly, Smartlead, HubSpot, Salesforce, Make.com, and Zapier.</p>
+            </details>
+
+            <details>
+                <summary>How long is an engagement?</summary>
+                <p>Our typical GTM Engineering builds take 3 to 6 months. We design, build, stabilize, and then either transition to a maintenance retainer or hand off to your internal team.</p>
+            </details>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="grid grid-2">
+                <div>
+                    <span class="section-tag">Get Started</span>
+                    <h2>Ready to build your revenue engine?</h2>
+                    <p>Book a 30-minute consultation. We'll discuss your current stack, your growth goals, and see if we're a fit.</p>
+                    <p><em>No pressure, no spam. Just engineering talk.</em></p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <p><strong>Engagement Model:</strong></p>
+                        <ul style="list-style: none; padding-left: 0; color: var(--color-text-muted);">
+                            <li style="margin-bottom: 0.5rem;">✓ Monthly Retainer (3-month min)</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Weekly Sprints & Updates</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Slack/Async Communication</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" placeholder="john@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="website">Company Website</label>
+                            <input type="text" id="website" placeholder="company.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">What's your biggest GTM challenge?</label>
+                            <textarea id="message" rows="4" placeholder="e.g. Low reply rates, messy CRM data..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule GTM Consult</button>
+                    </form>
+                    
+                    <div id="calendly-placeholder" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <strong>Clarity Rev</strong><br>
+                GTM Engineering & Revenue Systems.
+            </div>
+            <div>
+                &copy; 2025 Clarity Rev. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
