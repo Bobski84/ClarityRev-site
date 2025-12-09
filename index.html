@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clarity Rev | GTM Engineering & Revenue Systems</title>
-    <meta name="description" content="We build AI + human go-to-market systems for B2B SaaS and agencies. Your fractional GTM engineering team.">
+    <meta name="description" content="Clarity Rev is the umbrella brand for GTM engineering and revenue systems. Clarity LeadGen (CLG) operates under that umbrella as the specialised outbound and GTM execution unit for B2B SaaS and agencies.">
     
     <style>
         /* --- RESET & VARIABLES --- */
@@ -159,6 +159,7 @@
         .nav-links {
             display: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -171,8 +172,15 @@
 
         .nav-links a:hover { color: var(--color-accent); }
 
+        .nav-cta {
+            font-size: 0.9rem;
+            padding: 0.5rem 1.25rem;
+            box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.06), 0 4px 10px rgba(37, 99, 235, 0.28);
+            border-radius: 999px;
+        }
+
         @media (min-width: 768px) {
-            .nav-links { display: flex; align-items: center; }
+            .nav-links { display: flex; }
         }
 
         /* --- SECTIONS --- */
@@ -354,6 +362,10 @@
         }
 
     </style>
+
+    <!-- Calendly embed -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
 
@@ -366,7 +378,7 @@
                     <a href="#services">Solution</a>
                     <a href="#process">Process</a>
                     <a href="#about">About</a>
-                    <a href="#contact" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Book Discovery</a>
+                    <a href="#contact" class="btn btn-primary nav-cta">Book Discovery</a>
                 </div>
             </nav>
         </div>
@@ -415,7 +427,11 @@
                 <div>
                     <h2>The "Frankenstein" GTM Problem</h2>
                     <p>Most companies don't have a revenue problem; they have a systems problem. They treat lead generation as a task to be outsourced, rather than engineering to be built.</p>
-                    <p>We evolved from <em>Clarity LeadGen</em> to <strong>Clarity Rev</strong> because buying leads isn't enough anymore.</p>
+                    <p>
+                        <strong>Clarity Rev</strong> is the umbrella brand for our GTM engineering work.
+                        <em>Clarity LeadGen (CLG)</em> operates under that umbrella as the specialised outbound and GTM execution unit —
+                        because buying leads isn't enough anymore; you need a system that consistently creates opportunities.
+                    </p>
                 </div>
                 <div>
                     <ul class="problem-list">
@@ -614,27 +630,11 @@
                 </div>
 
                 <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Work Email</label>
-                            <input type="email" id="email" placeholder="john@company.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="website">Company Website</label>
-                            <input type="text" id="website" placeholder="company.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">What's your biggest GTM challenge?</label>
-                            <textarea id="message" rows="4" placeholder="e.g. Low reply rates, messy CRM data..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule GTM Consult</button>
-                    </form>
-                    
-                    <div id="calendly-placeholder" style="display: none;"></div>
+                    <div
+                        class="calendly-inline-widget"
+                        data-url="https://calendly.com/bmarcus-clarityleadgen/clarityrev-first-intro"
+                        style="min-width: 100%; height: 650px;">
+                    </div>
                 </div>
             </div>
         </div>
